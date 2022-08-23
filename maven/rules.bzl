@@ -53,9 +53,11 @@ def _generate_pom_file(ctx, version_file):
     pom_deps = []
     for pom_dependency in [dep for dep in target[JarInfo].deps.to_list() if dep.type == 'pom']:
         pom_dependency = pom_dependency.maven_coordinates
+        # if the dependency is the target, ignore
         if pom_dependency == target[JarInfo].name:
             continue
-        pom_dependency_coordinates = _parse_maven_coordinates(pom_dependency, False)
+        # else
+        pom_dependency_coordinates = _parse_maven_coordinates(pom_dependency)
         pom_dependency_artifact = pom_dependency_coordinates.group_id + ":" + pom_dependency_coordinates.artifact_id
         pom_dependency_version = pom_dependency_coordinates.version
 

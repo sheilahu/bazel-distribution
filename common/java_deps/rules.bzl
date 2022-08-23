@@ -72,6 +72,9 @@ def _collect_maven_coordinate_impl(_target, ctx):
         if tag.startswith(MAVEN_COORDINATES_PREFIX):
             jar_coordinates = tag[len(MAVEN_COORDINATES_PREFIX):]
 
+    print("hhhhh")
+    print(jar_file)
+    print(jar_coordinates)
     return [JarToMavenCoordinatesMapping(
         filename = jar_file,
         maven_coordinates = jar_coordinates
